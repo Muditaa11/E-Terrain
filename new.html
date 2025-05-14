@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Startup Listings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .startup {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+        }
+        .startup img {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            margin-right: 15px;
+        }
+        .startup:last-child {
+            border-bottom: none;
+        }
+        .apply-btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: auto;
+        }
+        .apply-btn:hover {
+            background-color: #218838;
+        }
+        .search-bar {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Available Startups</h2>
+        <input type="text" class="search-bar" id="search" placeholder="Search startups...">
+        <div id="startup-list">
+            <!-- Startups will be loaded here -->
+        </div>
+    </div>
+    
+    <script>
+        const startups = [
+            { name: "Tech Innovators", description: "A startup focused on AI solutions.", image: "https://img.freepik.com/premium-vector/startup-color-icon-logo-style_570929-3304.jpg" },
+            { name: "Green Energy Co.", description: "Renewable energy solutions for a better future.", image: "https://via.placeholder.com/80" },
+            { name: "Health Plus", description: "Healthcare technology to improve lives.", image: "https://via.placeholder.com/80" }
+        ];
+
+        const startupList = document.getElementById("startup-list");
+        const searchInput = document.getElementById("search");
+
+        function displayStartups(filter = "") {
+            startupList.innerHTML = "";
+            startups.filter(startup => startup.name.toLowerCase().includes(filter.toLowerCase()))
+                .forEach(startup => {
+                    const div = document.createElement("div");
+                    div.classList.add("startup");
+                    div.innerHTML = `
+                        <img src="${startup.image}" alt="${startup.name}">
+                        <div>
+                            <h3>${startup.name}</h3>
+                            <p>${startup.description}</p>
+                        </div>
+                        <button class="apply-btn">Apply</button>
+                    `;
+                    startupList.appendChild(div);
+                });
+        }
+
+        searchInput.addEventListener("input", (e) => {
+            displayStartups(e.target.value);
+        });
+
+        displayStartups();
+    </script>
+</body>
+</html>

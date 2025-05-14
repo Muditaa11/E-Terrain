@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer-Friendly Rental Listings</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>List a Farming Item for Rent</h1>
+        <p id="welcomeMessage"></p>
+        <button id="logoutButton" style="display: none;">Logout</button>
+        <form id="rentalForm" style="display: none;">
+            <input type="text" id="title" placeholder="Item Name (e.g., Tractor, Plow)" required>
+            <input type="number" id="price" placeholder="Price per Day ($)" required>
+            <select id="category" required>
+                <option value="">Select Category</option>
+                <option value="Tractors & Machinery">Tractors & Machinery</option>
+                <option value="Irrigation Equipment">Irrigation Equipment</option>
+                <option value="Hand Tools">Hand Tools</option>
+                <option value="Seeds & Fertilizers">Seeds & Fertilizers</option>
+                <option value="Livestock Equipment">Livestock Equipment</option>
+            </select>
+            <textarea id="description" placeholder="Description (Condition, Usage, etc.)" required></textarea>
+            <input type="file" id="image" accept="image/*" required>
+            <button type="submit">Add Listing</button>
+        </form>
+        <p id="loginMessage"><a href="auth.html">Login or Sign Up</a> to add farming rentals.</p>
+    </div>
+    
+    <div class="container">
+        <h2>Available Farming Equipment</h2>
+        <input type="text" id="searchBar" placeholder="Search for equipment...">
+        <a href="listings.html">View Listings</a>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const loggedInUser = localStorage.getItem("loggedInUser");
+            const welcomeMessage = document.getElementById("welcomeMessage");
+            const logoutButton = document.getElementById("logoutButton");
+            const rentalForm = document.getElementById("rentalForm");
+            const loginMessage = document.getElementById("loginMessage");
+
+            if (loggedInUser) {
+                welcomeMessage.textContent = `Welcome, ${loggedInUser}!`;
+                logoutButton.style.display = "block";
+                rentalForm.style.display = "block";
+                loginMessage.style.display = "none";
+            }
+
+            logoutButton.addEventListener("click", function () {
+                localStorage.removeItem("loggedInUser");
+                window.location.reload();
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Startup Listings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #abe993;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: whitesmoke;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .startup {
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            background-image: linear-gradient(to right, pink, rgb(89, 89, 243));
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: transform 0.3s ease-in-out;
+        }
+        .startup:hover {
+            transform: scale(1.02);
+        }
+        .startup img {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+        .startup-info {
+            flex-grow: 1;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+        }
+        .apply-btn, .learn-more-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .apply-btn:hover, .learn-more-btn:hover {
+            background-color: #0056b3;
+        }
+        .search-bar {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Available Startups</h2>
+        <input type="text" class="search-bar" id="search" placeholder="Search startups...">
+        <div id="startup-list">
+            <!-- Startups will be loaded here -->
+        </div>
+    </div>
+    
+    <script>
+        const startups = [
+            { name: "Tech Innovators", description: "A startup focused on AI solutions.", image: "https://via.placeholder.com/100" },
+            { name: "Green Energy Co.", description: "Renewable energy solutions for a better future.", image: "https://via.placeholder.com/100" },
+            { name: "Health Plus", description: "Healthcare technology to improve lives.", image: "https://via.placeholder.com/100" }
+        ];
+
+        const startupList = document.getElementById("startup-list");
+        const searchInput = document.getElementById("search");
+
+        function displayStartups(filter = "") {
+            startupList.innerHTML = "";
+            startups.filter(startup => startup.name.toLowerCase().includes(filter.toLowerCase()))
+                .forEach(startup => {
+                    const div = document.createElement("div");
+                    div.classList.add("startup");
+                    div.innerHTML = `
+                        <img src="${startup.image}" alt="${startup.name}">
+                        <div class="startup-info">
+                            <h3>${startup.name}</h3>
+                            <p>${startup.description}</p>
+                        </div>
+                        <div class="button-group">
+                            <button class="learn-more-btn">Learn More</button>
+                            <button class="apply-btn">Apply</button>
+                        </div>
+                    `;
+                    startupList.appendChild(div);
+                });
+        }
+
+        searchInput.addEventListener("input", (e) => {
+            displayStartups(e.target.value);
+        });
+
+        displayStartups();
+    </script>
+</body>
+</html>

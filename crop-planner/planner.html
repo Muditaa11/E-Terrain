@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced AI Crop Planner</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🌾 Advanced AI Crop Planner</h1>
+
+        <div class="filter-section">
+            <h3>📌 Select Soil Type:</h3>
+            <label><input type="checkbox" class="soil" value="sandy"> Sandy</label>
+            <label><input type="checkbox" class="soil" value="clay"> Clay</label>
+            <label><input type="checkbox" class="soil" value="loam"> Loam</label>
+
+            <h3>🌦 Climate Conditions:</h3>
+            <label><input type="checkbox" class="climate" value="hot"> Hot</label>
+            <label><input type="checkbox" class="climate" value="moderate"> Moderate</label>
+            <label><input type="checkbox" class="climate" value="cold"> Cold</label>
+
+            <h3>💧 Water Requirements:</h3>
+            <label><input type="checkbox" class="water" value="low"> Low</label>
+            <label><input type="checkbox" class="water" value="medium"> Medium</label>
+            <label><input type="checkbox" class="water" value="high"> High</label>
+
+            <h3>🌱 Crop Type:</h3>
+            <label><input type="checkbox" class="crop-type" value="organic"> Organic</label>
+            <label><input type="checkbox" class="crop-type" value="hybrid"> Hybrid</label>
+
+            <h3>📆 Growth Time:</h3>
+            <label><input type="checkbox" class="growth" value="short"> Short (1-3 months)</label>
+            <label><input type="checkbox" class="growth" value="medium"> Medium (4-6 months)</label>
+            <label><input type="checkbox" class="growth" value="long"> Long (7+ months)</label>
+        </div>
+
+        <button id="plan-btn">Get AI Crop Plan 🚀</button>
+
+        <div class="output-section">
+            <div id="weather-info">🌦 Weather data loading...</div>
+            <div id="crop-recommendation">💡 AI Crop Recommendation will appear here.</div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/ai.js"></script>
+    <script src="js/planner.js"></script>
+</body>
+</html>
